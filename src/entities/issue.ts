@@ -14,6 +14,7 @@ export class ReducedIssueImpl {
     project?: ReducedProject = new ReducedProjectImpl();
     summary?: string = '';
     description?: string = '';
+    idReadable?: string = '';
 }
 
 export class IssueImpl extends ReducedIssueImpl {
