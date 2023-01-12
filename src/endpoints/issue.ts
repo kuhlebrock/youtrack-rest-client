@@ -1,5 +1,5 @@
 import {BaseEndpoint} from "./base";
-import {Issue, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue} from "..";
+import {Issue, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue, ReducedVcsChange, ReducedVcsChangeImpl} from "..";
 import {UpdateIssue} from "../entities/issue";
 import {Command, CommandList, CommandListImpl} from "../entities/command";
 import {PaginationOptions} from "../options/pagination_options";
@@ -7,6 +7,7 @@ import {PaginationOptions} from "../options/pagination_options";
 export const IssuePaths = {
     issue: '/issues/{issueId}',
     issues: '/issues',
+    vcsChanges: '/issues/{issueId}/vcsChanges'
 };
 
 export const CommandPaths = {
@@ -47,6 +48,16 @@ export class IssueEndpoint extends BaseEndpoint {
     public executeCommand(command: Command): Promise<CommandList> {
         return this.postResourceWithFields<CommandList>(CommandPaths.commands, CommandListImpl, {
             data: command
+        });
+    }
+
+    ///api/issues/{issueID}/vcsChanges
+    public vscChanges(issueId: string, paginationOptions: PaginationOptions = {}): Promise<ReducedVcsChange[]> {
+        return this.getResourceWithFields<ReducedVcsChange[]>(IssuePaths.vcsChanges, ReducedVcsChangeImpl, {
+            params: {
+                issueId,
+                ...paginationOptions
+            }
         });
     }
 }

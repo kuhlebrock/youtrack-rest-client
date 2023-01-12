@@ -43,3 +43,13 @@ export interface NewIssue extends Issue {
 export interface UpdateIssue extends Issue {
     id: string;
 }
+
+export class ReducedVcsChangeImpl {
+    id?: string = '';
+    date?: string = '';
+    text?: string = '';
+    version?: string = '';
+}
+
+export interface ReducedVcsChange extends ReducedVcsChangeImpl {
+}
