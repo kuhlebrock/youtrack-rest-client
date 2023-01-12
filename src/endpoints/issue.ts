@@ -53,7 +53,7 @@ export class IssueEndpoint extends BaseEndpoint {
 
     ///api/issues/{issueID}/vcsChanges
     public vscChanges(issueId: string, paginationOptions: PaginationOptions = {}): Promise<ReducedVcsChange[]> {
-        return this.getResourceWithFields<ReducedVcsChange[]>(IssuePaths.vcsChanges, ReducedVcsChangeImpl, {
+        return this.getResourceWithFields<ReducedVcsChange[]>(this.format(IssuePaths.vcsChanges, {issueId}), ReducedVcsChangeImpl, {
             params: {
                 issueId,
                 ...paginationOptions
