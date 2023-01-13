@@ -15,6 +15,7 @@ export class ReducedIssueImpl {
     summary?: string = '';
     description?: string = '';
     idReadable?: string = '';
+    parent?: IssueLink = new IssueLinkImpl();
 }
 
 export class IssueImpl extends ReducedIssueImpl {
